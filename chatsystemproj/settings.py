@@ -96,7 +96,16 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [(os.getenv('REDIS_HOST', '127.0.0.1'), int(os.getenv('REDIS_PORT', 6379)))],
+            'hosts': [
+                {
+                    'address': (
+                        os.getenv('REDIS_HOST', '127.0.0.1'),
+                        int(os.getenv('REDIS_PORT', 6379))
+                    ),
+                    'password': os.getenv('REDIS_PASSWORD', None),
+                    'ssl': os.getenv('REDIS_SSL', 'False').lower() == 'true',
+                }
+            ],
             'capacity': 1500,  # Maximum number of messages that can be in a channel layer
             'expiry': 3600,    # Message expiry in seconds
         },
@@ -171,7 +180,16 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [(os.getenv('REDIS_HOST', '127.0.0.1'), int(os.getenv('REDIS_PORT', 6379)))],
+            'hosts': [
+                {
+                    'address': (
+                        os.getenv('REDIS_HOST', '127.0.0.1'),
+                        int(os.getenv('REDIS_PORT', 6379))
+                    ),
+                    'password': os.getenv('REDIS_PASSWORD', None),
+                    'ssl': os.getenv('REDIS_SSL', 'False').lower() == 'true',
+                }
+            ],
             'capacity': 1500,  # Maximum number of messages that can be in a channel layer
             'expiry': 3600,    # Message expiry in seconds
         },
