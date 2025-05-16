@@ -143,6 +143,11 @@ CORS_ALLOW_HEADERS = [
     'x-requested-with',
 ]
 
+# Additional CORS settings
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_REPLACE_HTTPS_REFERER = True
+CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
+
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
