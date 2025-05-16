@@ -34,9 +34,12 @@ DEBUG = os.getenv('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
+    "madical-frontend.vercel.app",
     'madical-backend.onrender.com',
-    '.onrender.com'
+    '.onrender.com',
+    ".vercel.app"
 ]
+
 
 
 # Application definition
