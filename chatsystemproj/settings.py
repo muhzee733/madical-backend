@@ -144,6 +144,8 @@ CORS_ALLOW_HEADERS = [
     'access-control-allow-origin',
     'access-control-allow-headers',
     'access-control-allow-methods',
+    'referrer-policy',
+    'referer'
 ]
 
 # Additional CORS settings
