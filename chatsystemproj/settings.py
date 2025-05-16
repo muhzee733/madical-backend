@@ -97,6 +97,8 @@ CHANNEL_LAYERS = {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
             'hosts': [(os.getenv('REDIS_HOST', '127.0.0.1'), int(os.getenv('REDIS_PORT', 6379)))],
+            'capacity': 1500,  # Maximum number of messages that can be in a channel layer
+            'expiry': 3600,    # Message expiry in seconds
         },
     },
 }
@@ -145,7 +147,11 @@ CORS_ALLOW_HEADERS = [
     'access-control-allow-headers',
     'access-control-allow-methods',
     'referrer-policy',
-    'referer'
+    'referer',
+    'sec-websocket-protocol',
+    'sec-websocket-extensions',
+    'sec-websocket-key',
+    'sec-websocket-version'
 ]
 
 # Additional CORS settings
@@ -156,6 +162,27 @@ CORS_PREFLIGHT_MAX_AGE = 86400  # 24 hours
 
 # Add CORS trusted origins
 CORS_TRUSTED_ORIGINS = [
+    "https://madical-frontend.vercel.app",
+    "https://*.vercel.app"
+]
+
+# WebSocket settings
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [(os.getenv('REDIS_HOST', '127.0.0.1'), int(os.getenv('REDIS_PORT', 6379)))],
+            'capacity': 1500,  # Maximum number of messages that can be in a channel layer
+            'expiry': 3600,    # Message expiry in seconds
+        },
+    },
+}
+
+# Allow WebSocket connections from frontend
+CORS_ALLOW_WEBSOCKETS = True
+
+# Add WebSocket allowed origins
+CORS_ALLOWED_WEBSOCKET_ORIGINS = [
     "https://madical-frontend.vercel.app",
     "https://*.vercel.app"
 ]
